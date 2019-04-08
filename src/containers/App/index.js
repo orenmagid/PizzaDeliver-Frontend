@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 import NavBar from '../../components/Navbar'
 import LoginForm from '../../components/LoginForm'
 import NewUserForm from '../../components/NewUserForm'
@@ -13,7 +13,10 @@ const MainContainer = styled('div', styles.main)
 const Content = styled('div', styles.content)
 
 class App extends Component {
-  state = { error: '', orders: [] }
+  state = {
+    error: '',
+    orders: []
+  }
 
   componentDidMount() {
     this.fetchOrders()
@@ -102,7 +105,10 @@ class App extends Component {
           this.setState({ error: '' })
           history.push('/place-order')
         } else {
-          this.setState({ error: 'Invalid username or password' })
+          this.setState({
+            error: 'Invalid username or password',
+            navBar: 'login'
+          })
           alert('Invalid username or password')
         }
       })
@@ -159,7 +165,12 @@ class App extends Component {
     const { orders } = this.state
     console.log(window.location.href.includes('login'))
 
-    // if (
+    if (
+      localStorage.getItem('token') &&
+      window.location.href.includes('login')
+    ) {
+      return <Redirect to="/" />
+    }
 
     return (
       <MainContainer>

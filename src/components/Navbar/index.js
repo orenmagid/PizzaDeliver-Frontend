@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { themeColors } from '../../constants'
 import Button from '../Button/Button'
@@ -8,7 +8,7 @@ import { styled } from 'styletron-react'
 const NavbarContainer = styled('div', styles.navbar)
 const NavbarContent = styled('div', styles.navbarContent)
 
-export default class Navbar extends PureComponent {
+export default class Navbar extends Component {
   render() {
     const { handleLogout } = this.props
     return (
@@ -22,29 +22,31 @@ export default class Navbar extends PureComponent {
                 textDecoration: 'none'
               }}
             >
-              <h1 style={{ textTransform: 'capitalize' }}>CHRONICLE PIZZA</h1>
+              <h1
+                style={{
+                  textTransform: 'capitalize'
+                }}
+              >
+                CHRONICLE PIZZA
+              </h1>
             </Link>
           </div>
           <div style={{ alignSelf: 'center' }}>
             {!localStorage.token ? (
-              <Button
-                $as={Link}
-                to={`/login`}
-                color={themeColors.secondaryColor}
-              >
-                Login
-              </Button>
+              <Link to={`/login`}>
+                <Button color={themeColors.secondaryColor}>Login</Button>
+              </Link>
             ) : null}
 
             {localStorage.token ? (
-              <Button
-                $as={Link}
-                to={`/`}
-                onClick={handleLogout}
-                color={themeColors.secondaryColor}
-              >
-                Logout
-              </Button>
+              <Link to={`/`}>
+                <Button
+                  onClick={handleLogout}
+                  color={themeColors.secondaryColor}
+                >
+                  Logout
+                </Button>
+              </Link>
             ) : null}
           </div>
         </NavbarContent>

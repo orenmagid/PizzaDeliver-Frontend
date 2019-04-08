@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import AdditionalOrderItem from './AdditionalOrderItem'
 import { themeColors, textColors } from '../../constants'
 import { formatDate } from '../../utils/date'
 import OrderItem from './OrderItem'
 
-export default class Orders extends PureComponent {
+export default class Orders extends Component {
   renderOrderItems = (order, orderItem) => {
     const pizzaTypes = order.pizza_types
 
