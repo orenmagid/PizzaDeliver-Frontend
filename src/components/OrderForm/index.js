@@ -36,7 +36,6 @@ export default class OrderForm extends PureComponent {
       })
         .then(res => res.json())
         .then(pizzaTypes => {
-          console.log(pizzaTypes)
           this.setState({ pizzaTypes })
         })
       fetch(baseUrl + '/user', {
@@ -46,7 +45,6 @@ export default class OrderForm extends PureComponent {
       })
         .then(res => res.json())
         .then(user => {
-          console.log('TCL: OrderForm -> componentDidMount -> user', user)
           this.setState({ user })
         })
         .catch(e => console.error(e))
@@ -85,10 +83,6 @@ export default class OrderForm extends PureComponent {
       })
         .then(res => res.json())
         .then(addressResponse => {
-          console.log(
-            'TCL: OrderForm -> handleVerifyAddress -> addressResponse',
-            addressResponse
-          )
           if (addressResponse.errors) {
             this.setState({
               newAddress: '',

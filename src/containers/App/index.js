@@ -32,7 +32,6 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(orders => {
-          console.log(orders)
           this.setState({ orders })
         })
         .catch(e => console.error(e))
@@ -51,7 +50,6 @@ class App extends Component {
         password: e.currentTarget.password.value
       }
     }
-    console.log(JSON.stringify(data))
     fetch(baseUrl + '/users', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -98,7 +96,6 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('TCL: App -> data', data)
         if (data.success) {
           localStorage.setItem('token', data.token)
 
@@ -163,7 +160,6 @@ class App extends Component {
 
   render() {
     const { orders } = this.state
-    console.log(window.location.href.includes('login'))
 
     if (
       localStorage.getItem('token') &&
